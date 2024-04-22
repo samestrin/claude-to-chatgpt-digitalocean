@@ -41,6 +41,17 @@ switch ($routeInfo[0]) {
         break;
 }
 
+/**
+ * Handles the API request by processing input data, validating, making a Claude API request, and formatting the response.
+ *
+ * @param array $vars - Variables from the routing that may contain parameters passed to the handler.
+ * @throws Exception If JSON input is invalid or if required fields are missing in the request body.
+ * @example
+ *
+ * // Example usage
+ * handleRequest($vars);
+ */
+
 function handleRequest(array $vars): void
 {
     try {
@@ -109,6 +120,15 @@ function handleRequest(array $vars): void
         echo "Server Error: " . $e->getMessage();
     }
 }
+/**
+ * Sets headers to handle CORS by allowing all origins, methods, and headers.
+ *
+ * @param array $vars - Variables passed from the route dispatcher, unused in this function.
+ * @example
+ *
+ * // Example usage
+ * handleOPTIONS($vars);
+ */
 
 function handleOPTIONS(array $vars): void
 {
@@ -117,6 +137,17 @@ function handleOPTIONS(array $vars): void
     header("Access-Control-Allow-Headers: *");
     header("Access-Control-Allow-Credentials: true");
 }
+
+/**
+ * Sends a JSON response containing a list of available models.
+ *
+ * @param array $vars - Variables passed from the route dispatcher, unused in this function.
+ * @returns void Outputs a JSON encoded list of models.
+ * @example
+ *
+ * // Example usage
+ * handleGetModels($vars);
+ */
 
 function handleGetModels(array $vars): void
 {
@@ -127,6 +158,17 @@ function handleGetModels(array $vars): void
     ]);
 }
 
+/**
+ * Retrieves the API key from request headers or uses the default environment key.
+ *
+ * @param array $headers - Array of request headers.
+ * @return string The API key.
+ * @example
+ *
+ * // Example usage
+ * $apiKey = getAPIKey($_SERVER);
+ */
+
 function getAPIKey(array $headers): string
 {
     $authorization = $headers["authorization"] ?? '';
@@ -136,6 +178,17 @@ function getAPIKey(array $headers): string
     global $CLAUDE_API_KEY;
     return $CLAUDE_API_KEY;
 }
+
+/**
+ * Validates the presence of required fields in the request body and checks for non-empty 'messages' field.
+ *
+ * @param array $requestBody - The body of the request to validate.
+ * @return array An array of validation error messages.
+ * @example
+ *
+ * // Example usage
+ * $errors = validateRequestBody($requestBody);
+ */
 
 function validateRequestBody(array $requestBody): array
 {
@@ -165,6 +218,7 @@ function validateRequestBody(array $requestBody): array
  *     ['role' => 'assistant', 'content' => 'Hi there!']
  * ]);
  */
+
 function convertMessagesToPrompt(array $messages): string
 {
     global $roleMap;
@@ -194,6 +248,7 @@ function convertMessagesToPrompt(array $messages): string
  *     "stop_reason": "length"
  * }'), false);
  */
+
 function claudeToChatGPTResponse(object $claudeResponse, bool $stream = false): object
 {
     global $stopReasonMap;
