@@ -1,8 +1,8 @@
 <?php
 // Bootstrap the application
-require 'bootstrap.php';
+require '../bootstrap.php';
 
 // Load routing
-require 'routes.php';
+require '../routes.php';
 
 ?>
