@@ -67,7 +67,9 @@ function handleOPTIONS() {
 function handleGET() {
     $path = $_SERVER['REQUEST_URI'];
     if ($path === '/v1/models') {
-
+        
+        global $models_list;
+        
         echo json_encode([
             'object' => 'list',
             'data' => $models_list,
