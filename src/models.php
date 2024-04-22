@@ -1,5 +1,5 @@
 <?php
-
+namespace ProjectAPI;
 
 $roleMap = ["system" => "Human", "user" => "Human", "assistant" => "Assistant"];
 $stopReasonMap = ["stop_sequence" => "stop", "max_tokens" => "length"];

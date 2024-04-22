@@ -1,16 +1,19 @@
 <?php
+namespace ProjectAPI\ResponseHelpers;
+
+use stdClass;
 
 /**
  * Converts a response from the Claude API into an object format similar to a ChatGPT response.
  *
- * @param object $claudeResponse Response object from the Claude API.
+ * @param stdClass $claudeResponse Response object from the Claude API.
  * @param bool $stream Indicates if the response is from a streaming endpoint.
- * @return object Formatted response similar to ChatGPT API responses.
+ * @return stdClass Formatted response similar to ChatGPT API responses.
  * @throws Exception If the response format is invalid.
  */
-function claudeToChatGPTResponse(object $claudeResponse, bool $stream = false): object
+function claudeToChatGPTResponse(stdClass $claudeResponse, bool $stream = false): stdClass
 {
-    global $stopReasonMap;
+    global $stopReasonMap; // Assuming stopReasonMap is globally defined or accessed via a configuration method
 
     $completion = $claudeResponse->completion;
     $timestamp = time();
@@ -46,4 +49,3 @@ function claudeToChatGPTResponse(object $claudeResponse, bool $stream = false): 
 
     return $result;
 }
-
