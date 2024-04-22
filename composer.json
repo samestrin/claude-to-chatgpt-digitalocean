@@ -1,13 +1,18 @@
 {
-    "name": "samestrin/claude-to-chatgpt-php-digital-ocean",
-    "description": "A PHP Digital Ocean App Platform based port of jtsang4/claude-to-chatgpt.",
-    "authors": [
-        {
-            "name": "Sam Estrin",
-            "email": "sam.estrin@gmail.com"
-        }
-    ],
-    "require": {
-        "nikic/fast-route": "^1.3"
+  "name": "samestrin/claude-to-chatgpt-php-digital-ocean",
+  "description": "A PHP Digital Ocean App Platform based port of jtsang4/claude-to-chatgpt.",
+  "authors": [
+    {
+      "name": "Sam Estrin",
+      "email": "sam.estrin@gmail.com"
     }
+  ],
+  "require": {
+    "nikic/fast-route": "^1.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "MyApp\\": "src/"
+    }
+  }
 }
