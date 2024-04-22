@@ -1,4 +1,5 @@
 <?php
+require './vendor/autoload.php';
 
 $version = "0.0.1";
 
