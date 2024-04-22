@@ -92,14 +92,13 @@ function handleRequest(array $vars): void
 
     $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
 
-    if (!$stream) {
-        $claudeResponseBody = json_decode($claudeResponse, true);
+    if (!$stream) {        
         if (json_last_error() !== JSON_ERROR_NONE) {
             http_response_code(500);
             echo "Error decoding Claude API response: " . json_last_error_msg();
             return;
         }
-        $openAIResponseBody = claudeToChatGPTResponse($claudeResponseBody);
+        $openAIResponseBody = claudeToChatGPTResponse($claudeResponse);
         $response = [
             "status" => 200,
             "headers" => ["Content-Type" => "application/json"],
