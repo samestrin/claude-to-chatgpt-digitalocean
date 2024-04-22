@@ -19,72 +19,73 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo "Method not allowed";
 }
 
-function handleRequest() {
-    $input = file_get_contents('php://input');
-    $requestBody = json_decode($input, true);
-    
-    // Your implementation logic here
+function handleRequest()
+{
+$input = file_get_contents('php://input');
+$requestBody = json_decode($input, true);
 
-    // 1. Get the API from headers or use the default
-    global $CLAUDE_API_KEY;
-    $apiKey = getAPIKey($_SERVER) ? getAPIKey($_SERVER) : $CLAUDE_API_KEY;
+// Your implementation logic here
 
-    // 2. extract parameters from requestBody
+// 1. Get the API from headers or use the default
+global $CLAUDE_API_KEY;
+$apiKey = getAPIKey($_SERVER) ?: $CLAUDE_API_KEY;
 
-    $model = $requestBody['model'];
-    $messages = $requestBody['messages'];
-    $temperature = $requestBody['temperature'];
-    $stop = $requestBody['stop'];
-    $stream = $requestBody['stream'];
+// 2. extract parameters from requestBody
 
-    global $model_map;
-    $claudeModel = $model_map[$model] || 'claude-2';
-    
-    // 3. convert messages to prompt
-    global $role_map;
-    $prompt = convertMessagesToPrompt($messages, $role_map);
-    
-    // 4. build claude request body
-    global $MAX_TOKENS;
-    $claudeRequestBody = [
-        'prompt' => $prompt,
-        'model' => $claudeModel,
-        'temperature' => $temperature,
-        'max_tokens_to_sample' => $MAX_TOKENS,
-        'stop_sequences' => $stop,
-        'stream' => $stream,
-    ];
+$model = $requestBody['model'];
+$messages = $requestBody['messages'];
+$temperature = $requestBody['temperature'];
+$stop = $requestBody['stop'];
+$stream = $requestBody['stream'];
 
-    // 5. make claude request
+global $model_map;
+$claudeModel = $model_map[$model] ?? 'claude-2';
 
-    $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
+// 3. convert messages to prompt
+global $role_map;
+$prompt = convertMessagesToPrompt($messages, $role_map);
 
-    // 6. handle response
+// 4. build claude request body
+global $MAX_TOKENS;
+$claudeRequestBody = [
+'prompt' => $prompt,
+'model' => $claudeModel,
+'temperature' => $temperature,
+'max_tokens_to_sample' => $MAX_TOKENS,
+'stop_sequences' => $stop,
+'stream' => $stream,
+];
 
-    if (!$stream) {
-        $claudeResponseBody = json_decode($claudeResponse->getBody(), true);
-        $openAIResponseBody = claudeToChatGPTResponse($claudeResponseBody);
-        $response = [
-            'status' => $claudeResponse->getStatusCode(),
-            'headers' => ['Content-Type' => 'application/json'],
-            'body' => json_encode($openAIResponseBody)
-        ];
-    } else {
-        $stream = $claudeResponse->getBody()->getContents();
-        $response = [
-            'headers' => [
-                'Content-Type' => 'text/event-stream',
-                'Access-Control-Allow-Origin' => '*',
-                'Access-Control-Allow-Methods' => '*',
-                'Access-Control-Allow-Headers' => '*',
-                'Access-Control-Allow-Credentials' => 'true'
-            ],
-            'body' => $stream
-        ];
-    }
+// 5. make claude request
+global $CLAUDE_BASE_URL;
+$claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
 
-    
-    echo json_encode($response);
+// 6. handle response
+
+if (!$stream) {
+$claudeResponseBody = json_decode($claudeResponse->getBody(), true);
+$openAIResponseBody = claudeToChatGPTResponse($claudeResponseBody);
+$response = [
+'status' => $claudeResponse->getStatusCode(),
+'headers' => ['Content-Type' => 'application/json'],
+'body' => json_encode($openAIResponseBody)
+];
+} else {
+$stream = $claudeResponse->getBody()->getContents();
+$response = [
+'headers' => [
+'Content-Type' => 'text/event-stream',
+'Access-Control-Allow-Origin' => '*',
+'Access-Control-Allow-Methods' => '*',
+'Access-Control-Allow-Headers' => '*',
+'Access-Control-Allow-Credentials' => 'true'
+],
+'body' => $stream
+];
+}
+
+
+echo json_encode($response);
 }
 
 function handleOPTIONS() {
@@ -121,6 +122,8 @@ function getAPIKey($headers) {
 }
 
 function claudeToChatGPTResponse($claudeResponse, $stream = false) {
+    global $stop_reason_map;
+    
     $completion = $claudeResponse['completion'];
     $timestamp = time();
     $completionTokens = count(explode(' ', $completion));
@@ -171,7 +174,8 @@ function makeClaudeRequest($apiKey, $claudeRequestBody) {
     $ch = curl_init();
 
     // Set the URL for the request
-    $url = CLAUDE_BASE_URL . '/v1/complete';
+    global $CLAUDE_BASE_URL;
+    $url = $CLAUDE_BASE_URL . '/v1/complete';
     curl_setopt($ch, CURLOPT_URL, $url);
 
     // Set the request method to POST
@@ -205,8 +209,17 @@ function makeClaudeRequest($apiKey, $claudeRequestBody) {
     // Close curl session
     curl_close($ch);
 
-    // Return the response
-    return $response;
+    // Decode the JSON response
+    $decodedResponse = json_decode($response);
+
+    // Check if JSON decoding was successful
+    if ($decodedResponse === null && json_last_error() !== JSON_ERROR_NONE) {
+        echo 'Error decoding JSON: ' . json_last_error_msg();
+        return false; // Return false indicating an error
+    }
+
+    // Return the decoded JSON response
+    return $decodedResponse;
 }
 
 function streamJsonResponseBodies($response, $writable) {
