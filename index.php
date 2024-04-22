@@ -23,6 +23,13 @@ function handleRequest() {
     $input = file_get_contents('php://input');
     $requestBody = json_decode($input, true);
     
+
+    
+    // Your implementation logic here
+
+    // 1. Get the API from headers or use the default
+    // 2. extract paramters from requestBody
+
     // Extract request parameters
     $model = $requestBody['model'];
     $messages = $requestBody['messages'];
@@ -30,7 +37,9 @@ function handleRequest() {
     $stop = $requestBody['stop'];
     $stream = $requestBody['stream'];
     
-    // Your implementation logic here
+    // 3. convert messages to prompt
+
+    $prompt = convertMessagesToPrompt($messages);
     
     // Example response
     $response = [
@@ -78,6 +87,18 @@ function handleGET() {
         http_response_code(404);
         echo "Not Found";
     }
+}
+
+function convertMessagesToPrompt($messages, $role_map) {
+    $prompt = '';
+    foreach ($messages as $message) {
+        $role = $message['role'];
+        $content = $message['content'];
+        $transformed_role = isset($role_map[$role]) ? $role_map[$role] : 'Human';
+        $prompt .= "\n\n$transformed_role: $content";
+    }
+    $prompt .= "\n\nAssistant: ";
+    return $prompt;
 }
 
 $role_map = [
