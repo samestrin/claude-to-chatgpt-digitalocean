@@ -7,5 +7,7 @@
             "email": "sam.estrin@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "nikic/fast-route": "^1.3"
+    }
 }
