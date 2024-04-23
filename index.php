@@ -13,4 +13,4 @@ require_once __DIR__ . '/src/Bootstrap.php';
 // Load routing logic
 require_once __DIR__ . '/src/Routes.php';
 
-?>
+
