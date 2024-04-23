@@ -81,16 +81,26 @@ function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass {
             'header' => implode("\r\n", $headers),
             'method' => 'POST',
             'content' => json_encode($claudeRequestBody),
+            'ignore_errors' => true  // Important to handle HTTP errors
         ],
     ];
     $context = stream_context_create($options);
-    $responseBody = file_get_contents($url, false, $context);
-    if ($responseBody === false) {
-        throw new \Exception("Failed to make API request to Claude.");
+    $response = @file_get_contents($url, false, $context);
+
+    if ($response === false) {
+        throw new \Exception("Network error or no data returned from API");
     }
-    $responseData = json_decode($responseBody);
+
+    $statusCode = $http_response_header[0] ?? null;
+    if (!preg_match("/200 OK/", $statusCode)) {  // Check for HTTP 200 OK
+        throw new \Exception("Unexpected response status: " . $statusCode);
+    }
+
+    $responseData = json_decode($response);
     if (json_last_error() !== JSON_ERROR_NONE) {
-        throw new \Exception("Error decoding Claude API response: " . json_last_error_msg());
+        throw new \Exception("Error decoding JSON response: " . json_last_error_msg());
     }
+
     return $responseData;
 }
+
