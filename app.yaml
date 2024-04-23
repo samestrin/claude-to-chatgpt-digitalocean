@@ -8,4 +8,4 @@ services:
     build_command: composer install
     run_command: php -S 0.0.0.0:8080 -t public/index.php
     http_port: 8080
-build_dir: /
+    source_dir: /
