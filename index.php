@@ -13,7 +13,7 @@ require_once __DIR__ . '/src/routes.php';
 // Check if the 'debug' query parameter is set
 if (($_GET['debug'] ?? 'false') === "true") {
 
-    die("<pre>" . print_r($httpMethod) . print_r($routeInfo, true) . "</pre>");
+    die("<pre>" . print_r($httpMethod) . "\r\n" . print_r($uri) . "\r\n" . print_r($routeInfo, true) . "</pre>");
   }
 
 ?>
