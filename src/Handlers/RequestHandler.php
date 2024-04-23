@@ -1,21 +1,21 @@
 <?php
 namespace ClaudeToGPTAPI\Handlers;
-
 if (($_GET['debug'] ?? 'false') === "true") {
     die(print_r("Handlers file loaded."));
 }
-
 require_once __DIR__ . '/../vendor/autoload.php';
-
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
 use function ClaudeToGPTAPI\ApiHelpers\getAPIKey;
 use function ClaudeToGPTAPI\ApiHelpers\makeClaudeRequest;
+use function ClaudeToGPTAPI\ResponseHelpers\claudeToChatGPTResponse;  // Import the response helper
 
 /**
  * Handles API requests.
  *
  * @param mixed $vars - Variables passed to the handler.
  */
+
+ 
 class RequestHandler {
     public static function handle($vars) {
         try {
@@ -31,7 +31,8 @@ class RequestHandler {
                 return;
             }
             $apiKey = getAPIKey($_SERVER);
-            $response = makeClaudeRequest($apiKey, $requestBody);
+            $claudeResponse = makeClaudeRequest($apiKey, $requestBody);  // Raw response from Claude API
+            $response = claudeToChatGPTResponse($claudeResponse, false);  // Convert Claude response to ChatGPT format
             echo json_encode($response);
         } catch (\Exception $e) {
             http_response_code(500);
@@ -39,3 +40,4 @@ class RequestHandler {
         }
     }
 }
+?>
