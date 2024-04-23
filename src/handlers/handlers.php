@@ -2,7 +2,7 @@
 namespace ClaudeToGPTAPI\Handlers;
 
 if (($_GET['debug'] ?? 'false') === "true") {
-    error_log("Handlers file loaded.");
+    die(print_r("Handlers file loaded."));
 }
 
 require_once __DIR__ . '/../vendor/autoload.php';
