@@ -74,7 +74,8 @@ function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass {
     $headers = [
         'Accept: application/json',
         'Content-Type: application/json',
-        'Authorization: Bearer ' . $apiKey,
+        'x-api-key: ' . $apiKey,
+        'anthropic-version: 2023-06-01',
     ];
     $options = [
         'http' => [

@@ -3,6 +3,8 @@ namespace ClaudeToGPTAPI\Handlers;
 
 require_once __DIR__ . '/../Models.php'; // Include the Models.php to access $modelsList
 
+use ClaudeToGPTAPI\Models; // Use the Models class
+
 /**
  * Handles requests for the "/v1/models" route.
  * This class is responsible for returning a JSON response containing the available models.
@@ -16,10 +18,7 @@ class ModelsHandler {
     public static function handle($vars) {
         header('Content-Type: application/json');  // Sets the header for content type to JSON
 
-        // Accessing the global variable containing models information
-        global $modelsList;
-
         // Echoing out the JSON encoded list of models
-        echo json_encode($modelsList);
+        echo json_encode(Models::getModelsList());
     }
 }
