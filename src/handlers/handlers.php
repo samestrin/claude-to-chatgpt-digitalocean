@@ -1,9 +1,9 @@
 <?php
+namespace ClaudeToGPTAPI\Handlers;
 
 if (($_GET['debug'] ?? 'false') === "true") {
     error_log("Handlers file loaded.");
 }
-namespace ClaudeToGPTAPI\Handlers;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
