@@ -1,5 +1,5 @@
 <?php
-namespace ProjectAPI;
+namespace ClaudeToGPTAPI;
 
 class Config {
     public static $version = "0.0.1";

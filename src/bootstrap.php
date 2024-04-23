@@ -1,5 +1,5 @@
 <?php
-namespace ProjectAPI;
+namespace ClaudeToGPTAPI;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 

@@ -1,5 +1,5 @@
 <?php
-namespace ProjectAPI;
+namespace ClaudeToGPTAPI;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -9,9 +9,9 @@ use FastRoute\Dispatcher;
 use function FastRoute\simpleDispatcher;
 
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
-    $r->addRoute('POST', '/', 'ProjectAPI\Handlers\RequestHandler::handle');
-    $r->addRoute('OPTIONS', '/', 'ProjectAPI\Handlers\OptionsHandler::handle');
-    $r->addRoute('GET', '/v1/models', 'ProjectAPI\Handlers\ModelsHandler::handle');
+    $r->addRoute('POST', '/', 'ClaudeToGPTAPI\Handlers\RequestHandler::handle');
+    $r->addRoute('OPTIONS', '/', 'ClaudeToGPTAPI\Handlers\OptionsHandler::handle');
+    $r->addRoute('GET', '/v1/models', 'ClaudeToGPTAPI\Handlers\ModelsHandler::handle');
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];

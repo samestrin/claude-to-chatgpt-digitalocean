@@ -8,7 +8,7 @@ if ($_GET['debug'] ?? false === "true") {
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Namespace to access the bootstrap functionalities
-use ProjectAPI;
+use ClaudeToGPTAPI;
 
 // Load the bootstrap file to set up the environment and error handling
 require_once __DIR__ . '/../src/bootstrap.php';

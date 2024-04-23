@@ -1,5 +1,5 @@
 <?php
-namespace ProjectAPI\ResponseHelpers;
+namespace ClaudeToGPTAPI\ResponseHelpers;
 
 use stdClass;
 

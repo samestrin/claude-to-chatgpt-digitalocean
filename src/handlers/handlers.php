@@ -1,12 +1,12 @@
 <?php
-namespace ProjectAPI\Handlers;
+namespace ClaudeToGPTAPI\Handlers;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
 // Assuming functions are used directly from the namespace
-use function ProjectAPI\ApiHelpers\validateRequestBody;
-use function ProjectAPI\ApiHelpers\getAPIKey;
-use function ProjectAPI\ApiHelpers\makeClaudeRequest;
+use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
+use function ClaudeToGPTAPI\ApiHelpers\getAPIKey;
+use function ClaudeToGPTAPI\ApiHelpers\makeClaudeRequest;
 
 class RequestHandler {
     public static function handle($vars) {

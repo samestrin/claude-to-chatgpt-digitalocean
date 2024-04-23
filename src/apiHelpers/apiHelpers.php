@@ -1,7 +1,7 @@
 <?php
-namespace ProjectAPI\ApiHelpers;
+namespace ClaudeToGPTAPI\ApiHelpers;
 
-use ProjectAPI\Config;
+use ClaudeToGPTAPI\Config;
 use stdClass;
 
 /**
