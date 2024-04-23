@@ -1,6 +1,8 @@
 <?php
 namespace ClaudeToGPTAPI\Handlers;
 
+require_once __DIR__ . '/../Models.php'; // Include the Models.php to access $modelsList
+
 /**
  * Handles requests for the "/v1/models" route.
  * This class is responsible for returning a JSON response containing the available models.

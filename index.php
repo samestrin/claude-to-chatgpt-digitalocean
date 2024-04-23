@@ -10,15 +10,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 // Load the bootstrap file to set up the environment and error handling
 require_once __DIR__ . '/src/Bootstrap.php';
 
-// Load models
-require_once __DIR__ . '/src/Models.php';
-
 // Load routing logic
 require_once __DIR__ . '/src/Routes.php';
-
-// Check if the 'debug' query parameter is set
-if (($_GET['debug'] ?? 'false') === "true") {
-    error_log(print_r(get_included_files()));
-}
 
 ?>
