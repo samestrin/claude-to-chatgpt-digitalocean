@@ -1,5 +1,6 @@
 <?php
 namespace ClaudeToGPTAPI\Handlers;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
 use function ClaudeToGPTAPI\ApiHelpers\getAPIKey;
