@@ -2,7 +2,6 @@
 namespace ClaudeToGPTAPI\Handlers;
 require_once __DIR__ . '/../Config.php';
 require_once __DIR__ . '/../Models.php';
-require_once __DIR__ . '/../vendor/autoload.php';
 
 use ClaudeToGPTAPI\Config;
 use ClaudeToGPTAPI\Models;
