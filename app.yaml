@@ -6,5 +6,5 @@ services:
       branch: main
     environment_slug: php
     build_command: composer install
-    run_command: php -S 0.0.0.0:8080 -t public/
+    run_command: php -S 0.0.0.0:8080 -t public/index.php
     http_port: 8080
