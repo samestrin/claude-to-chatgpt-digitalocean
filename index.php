@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 
 // Use the Composer-generated autoloader to handle necessary imports
 require_once __DIR__ . '/vendor/autoload.php';
