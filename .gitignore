@@ -1,25 +1,82 @@
-# CakePHP 3
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-/vendor/*
-/config/app.php
+# Packages #
+############
+# it's generally good practice to exclude dependency directories
+node_modules/
+jspm_packages/
+venv/
+ENV/
+env.bak/
+build/
+dist/
 
-/tmp/cache/models/*
-!/tmp/cache/models/empty
-/tmp/cache/persistent/*
-!/tmp/cache/persistent/empty
-/tmp/cache/views/*
-!/tmp/cache/views/empty
-/tmp/sessions/*
-!/tmp/sessions/empty
-/tmp/tests/*
-!/tmp/tests/empty
+# Logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
 
-/logs/*
-!/logs/empty
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# CakePHP 2
+# IDE-specific files #
+######################
+/.vs/
+/.vscode/
+*.swp
+*.swo
+*.sublime-workspace
+*.sublime-project
+.idea/
+*.iml
+*.ipr
+*.iws
+*.xcuserstate
+*.xcworkspace
+*.plist
+*.xcscheme
+*.xcsettings
 
-/app/tmp/*
-/app/Config/core.php
-/app/Config/database.php
-/vendors/*
+# Profile & config files #
+###########################
+/.aw/
+/.terraform/
+*.env
+*.env.example
+*.env.template
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# Ignore certain specific files that may contain sensitive data or specific local configurations
+/config/database.yml
+/secrets.json
+
+# Specific tool configurations #
+################################
+/.bundle/
+/vendor/bundle/
+/Cargo.lock
+
+# Other files and directories to ignore #
+########################################
+/backups/
+/temp/
+/tmp/
+/coverage/
