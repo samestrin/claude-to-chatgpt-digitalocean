@@ -39,7 +39,7 @@ class RequestHandler {
  * Handles requests for the "/v1/models" route.
  * This class is responsible for returning a JSON response containing the available models.
  */
-class ModelHandler {
+class ModelsHandler {
     /**
      * Handles the incoming request and sends a JSON response with the models list.
      * 
