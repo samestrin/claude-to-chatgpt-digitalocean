@@ -1,37 +1,34 @@
 <?php
 namespace ClaudeToGPTAPI\ApiHelpers;
-
 use ClaudeToGPTAPI\Config;
 use stdClass;
 
 /**
- * Retrieves the API key from request headers or uses the default environment key.
+ * Retrieves the API key from the headers or uses the default.
  *
- * @param array $headers - Array of request headers.
- * @return string The API key.
+ * @param array $headers - Array containing request headers.
+ * @returns string - The API key.
  */
-function getAPIKey(array $headers): string
-{
+function getAPIKey(array $headers): string {
     $authorization = $headers["Authorization"] ?? '';
     if (strpos($authorization, "Bearer ") === 0) {
         return substr($authorization, 7);
     }
-    return Config::$CLAUDE_API_KEY;  // Using a config variable
+    return Config::$CLAUDE_API_KEY; 
 }
 
 /**
- * Validates the presence of required fields in the request body and checks for non-empty 'messages' field.
+ * Validates the request body for required fields.
  *
- * @param array $requestBody - The body of the request to validate.
- * @return array An array of validation error messages.
+ * @param array $requestBody - Array containing the body of the request.
+ * @returns array - List of validation errors.
  */
-function validateRequestBody(array $requestBody): array
-{
+function validateRequestBody(array $requestBody): array {
     $errors = [];
     $requiredFields = ['model', 'messages', 'temperature', 'stop', 'stream'];
     foreach ($requiredFields as $field) {
-        if (!isset($requestBody[$field])) {
-            $errors[] = "Missing required field: $field";
+        if (!isset($requestBody[$field]) || !is_correct_type($field, $requestBody[$field])) {
+            $errors[] = "Invalid or missing field: $field";
         }
     }
     if (empty($requestBody['messages'])) {
@@ -40,42 +37,60 @@ function validateRequestBody(array $requestBody): array
     return $errors;
 }
 
-/**
- * Sends a request to the Claude API and returns the response as an object.
- *
- * @param string $apiKey API key for authentication.
- * @param array $claudeRequestBody The body of the request for the Claude API.
- * @return stdClass Decoded JSON response from the Claude API as an object.
- * @throws Exception If there is an error with the request or response handling.
- */
-function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass
-{
-    $url = Config::$CLAUDE_BASE_URL . '/v1/complete';
 
+/**
+ * Checks if the type of a given value matches the expected type for a specified field.
+ *
+ * @param string $field - The name of the field.
+ * @param mixed $value - The value to check.
+ * @returns bool - True if the type is correct, false otherwise.
+ */
+function is_correct_type($field, $value): bool {
+    switch ($field) {
+        case 'model':
+        case 'stop':
+            return is_string($value);
+        case 'messages':
+            return is_array($value);
+        case 'temperature':
+            return is_float($value) || is_int($value);
+        case 'stream':
+            return is_bool($value);
+        default:
+            return false;
+    }
+}
+
+/**
+ * Makes a request to the Claude API.
+ *
+ * @param string $apiKey - The API key for authentication.
+ * @param array $claudeRequestBody - The request body for Claude API.
+ * @returns stdClass - The response from the Claude API.
+ * @throws Exception - Throws an exception if the API request fails.
+ */
+function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass {
+    $url = Config::$CLAUDE_BASE_URL . '/v1/complete';
     $headers = [
         'Accept: application/json',
         'Content-Type: application/json',
         'Authorization: Bearer ' . $apiKey,
     ];
-
     $options = [
         'http' => [
-            'header'  => implode("\r\n", $headers),
-            'method'  => 'POST',
+            'header' => implode("\r\n", $headers),
+            'method' => 'POST',
             'content' => json_encode($claudeRequestBody),
         ],
     ];
-
     $context = stream_context_create($options);
     $responseBody = file_get_contents($url, false, $context);
     if ($responseBody === false) {
         throw new \Exception("Failed to make API request to Claude.");
     }
-
     $responseData = json_decode($responseBody);
     if (json_last_error() !== JSON_ERROR_NONE) {
         throw new \Exception("Error decoding Claude API response: " . json_last_error_msg());
     }
-
     return $responseData;
 }
