@@ -12,7 +12,6 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/', 'ClaudeToGPTAPI\Handlers\RequestHandler::handle');
     $r->addRoute('OPTIONS', '/', 'ClaudeToGPTAPI\Handlers\OptionsHandler::handle');
     $r->addRoute('GET', '/v1/models', 'ClaudeToGPTAPI\Handlers\ModelsHandler::handle');
-    $r->addRoute('GET', '/v1/options', 'ClaudeToGPTAPI\Handlers\OptionsHandler::handle');
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
