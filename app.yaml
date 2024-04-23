@@ -13,8 +13,6 @@ services:
       branch: main
     environment_slug: php
     build_command: composer install
-    run_command: php -S 0.0.0.0:8080 -t .
+    run_command: heroku-php-nginx -C nginx.conf .
     http_port: 8080
     source_dir: /
-    routes:
-      - path: /
