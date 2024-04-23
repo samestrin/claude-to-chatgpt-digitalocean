@@ -1,3 +1,10 @@
+ingress:
+  rules:
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
 name: claude-to-chatgpt-php-digital-ocean
 services:
   - name: web
@@ -9,5 +16,3 @@ services:
     run_command: php -S 0.0.0.0:8080 -t .
     http_port: 8080
     source_dir: /
-    routes:
-      - path: /
