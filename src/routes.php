@@ -9,7 +9,7 @@ use FastRoute\Dispatcher;
 use function FastRoute\simpleDispatcher;
 
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
-    $r->addRoute('POST', '/', 'ClaudeToGPTAPI\Handlers\RequestHandler::handle');
+    $r->addRoute('POST', '/v1/chat/completions', 'ClaudeToGPTAPI\Handlers\RequestHandler::handle');
     $r->addRoute('OPTIONS', '/', 'ClaudeToGPTAPI\Handlers\OptionsHandler::handle');
     $r->addRoute('GET', '/v1/models', 'ClaudeToGPTAPI\Handlers\ModelsHandler::handle');
 });
