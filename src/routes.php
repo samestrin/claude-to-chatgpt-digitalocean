@@ -11,7 +11,7 @@ use function FastRoute\simpleDispatcher;
 $dispatcher = simpleDispatcher(function (RouteCollector $r) {
     $r->addRoute('POST', '/', 'ClaudeToGPTAPI\Handlers\RequestHandler::handle');
     $r->addRoute('OPTIONS', '/', 'ClaudeToGPTAPI\Handlers\OptionsHandler::handle');
-    $r->addRoute('GET', '/v1/models', 'ClaudeToGPTAPI\Handlers\ModelsHandler::handle');
+    $r->addRoute('GET', '/v1/models', 'ClaudeToGPTAPI\Handlers\ModelHandler::handle');
 });
 
 $httpMethod = $_SERVER['REQUEST_METHOD'];
@@ -19,6 +19,7 @@ $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = rawurldecode($uri);
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
+
 switch ($routeInfo[0]) {
     case Dispatcher::NOT_FOUND:
         http_response_code(404);
