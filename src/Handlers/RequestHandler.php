@@ -78,4 +78,4 @@ class RequestHandler {
         return $prompt;
     }
 }
-?>
+
