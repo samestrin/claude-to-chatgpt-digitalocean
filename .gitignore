@@ -72,7 +72,7 @@ Thumbs.db
 ################################
 /.bundle/
 /vendor/bundle/
-/vendor/
+vendor/
 /Cargo.lock
 
 # Other files and directories to ignore #
