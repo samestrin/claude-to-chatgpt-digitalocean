@@ -1,6 +1,7 @@
 <?php
 namespace ClaudeToGPTAPI\ResponseHelpers;
 
+use ClaudeToGPTAPI\Models;
 use stdClass;
 
 /**
@@ -13,11 +14,12 @@ use stdClass;
  */
 function claudeToChatGPTResponse(stdClass $claudeResponse, bool $stream = false): stdClass
 {
-    global $stopReasonMap; // Assuming stopReasonMap is globally defined or accessed via a configuration method
+    // Retrieve the stop reason map from a model or similar source
+    $stopReasonMap = Models::getStopReasonMap();
 
     $completion = $claudeResponse->completion;
-    $timestamp = time();
-    $completionTokens = count(explode(" ", $completion));
+    $timestamp = time(); // Current time as Unix timestamp
+    $completionTokens = count(explode(" ", $completion)); // Counting tokens based on spaces
 
     $result = new stdClass();
     $result->id = "chatcmpl-" . $timestamp;
@@ -27,10 +29,11 @@ function claudeToChatGPTResponse(stdClass $claudeResponse, bool $stream = false)
     $result->usage->prompt_tokens = 0;
     $result->usage->completion_tokens = $completionTokens;
     $result->usage->total_tokens = $completionTokens;
-    $result->choices = [];
+    $result->choices = []; // Initialize choices array to hold choice objects
 
     $choice = new stdClass();
     $choice->index = 0;
+    // Use the stop reason map to resolve the stop reason if it exists
     $choice->finish_reason = isset($claudeResponse->stop_reason) ? $stopReasonMap[$claudeResponse->stop_reason] : null;
 
     $message = new stdClass();
@@ -39,13 +42,15 @@ function claudeToChatGPTResponse(stdClass $claudeResponse, bool $stream = false)
 
     if (!$stream) {
         $result->object = "chat.completion";
-        $choice->message = $message;
+        $choice->message = $message; // Assigning message object to choice if not streaming
     } else {
         $result->object = "chat.completion.chunk";
-        $choice->delta = $message;
+        $choice->delta = $message; // Assigning message object to delta if streaming
     }
 
+    // Push the prepared choice object into the choices array
     array_push($result->choices, $choice);
 
     return $result;
 }
+
