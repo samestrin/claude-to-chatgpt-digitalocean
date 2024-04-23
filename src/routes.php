@@ -7,7 +7,6 @@ use ClaudeToGPTAPI\Handlers\RequestHandler;
 use ClaudeToGPTAPI\Handlers\OptionsHandler;
 use ClaudeToGPTAPI\Handlers\ModelsHandler;
 
-
 // Import necessary classes from FastRoute
 use FastRoute\RouteCollector;
 use FastRoute\Dispatcher;
