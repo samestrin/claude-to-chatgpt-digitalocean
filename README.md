@@ -14,7 +14,7 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 
 Click this button to deploy the project to your Digital Ocean account:
 
-[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/samestrin/claude-to-chatgpt-netlify)
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/samestrin/claude-to-chatgpt-netlify/tree/main)
 
 ## Digital Ocean App Platform Setup
 
