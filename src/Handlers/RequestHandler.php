@@ -45,8 +45,8 @@ class RequestHandler {
             $claudeModel = Models::getModelMap()[$requestBody['model']] ?? 'claude-2';
             $prompt = self::convertMessagesToPrompt($requestBody['messages']);            
 
-            $stream = isset($requestBody['stream']) ? $requestBody['stream'] : false;
-            $temperature = isset($requestBody['stream']) ? $requestBody['temperature'] : 0.5;            
+            $stream = $requestBody['stream'] ?? false;
+            $temperature = $requestBody['stream'] ?? 0.5;            
 
             $claudeRequestBody = [
                 "prompt" => $prompt,
