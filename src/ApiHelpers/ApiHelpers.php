@@ -78,6 +78,7 @@ function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass {
         'x-api-key: ' . $apiKey,
         'anthropic-version: 2023-06-01',
     ];
+    die(print_r($headers));
     $options = [
         'http' => [
             'header' => implode("\r\n", $headers),
