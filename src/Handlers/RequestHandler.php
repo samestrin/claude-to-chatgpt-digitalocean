@@ -4,6 +4,8 @@ namespace ClaudeToGPTAPI\Handlers;
 require_once __DIR__ . '/../Config.php';
 require_once __DIR__ . '/../Models.php';
 require_once __DIR__ . '/../ApiHelpers/ApiHelpers.php';
+require_once __DIR__ . '/../ResponseHelpers/ResponseHelper.php';
+
 use ClaudeToGPTAPI\Config;
 use ClaudeToGPTAPI\Models;
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
