@@ -1,33 +1,37 @@
 <?php
 namespace ClaudeToGPTAPI\Handlers;
+
 require_once __DIR__ . '/../Config.php';
 require_once __DIR__ . '/../Models.php';
 require_once __DIR__ . '/../ApiHelpers/ApiHelpers.php';
-
 use ClaudeToGPTAPI\Config;
 use ClaudeToGPTAPI\Models;
-
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
 use function ClaudeToGPTAPI\ApiHelpers\getAPIKey;
 use function ClaudeToGPTAPI\ApiHelpers\makeClaudeRequest;
-use function ClaudeToGPTAPI\ResponseHelpers\claudeToChatGPTResponse;  // Import the response helper
+use function ClaudeToGPTAPI\ResponseHelpers\claudeToChatGPTResponse;
 
 /**
  * Handles API requests.
  *
  * @param mixed $vars - Variables passed to the handler.
  */
+
 class RequestHandler {
     public static function handle($vars) {
         try {
-            $maxTokens = Config::$MAX_TOKENS;
-            $modelMap = Models::getModelMap();
-
             $input = file_get_contents("php://input");
+            $headers = getallheaders(); // Fetch all headers
+            $apiKey = getAPIKey($headers); // Get or default to configured API key
+
+            // Set API key in configuration dynamically
+            Config::setApiKey($apiKey);
+
             $requestBody = json_decode($input, true);
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \Exception("Invalid JSON");
             }
+
             $validationErrors = validateRequestBody($requestBody);
             if (!empty($validationErrors)) {
                 http_response_code(400);
@@ -35,22 +39,21 @@ class RequestHandler {
                 return;
             }
 
-            $apiKey = getAPIKey($_SERVER);
-            $claudeModel = $modelMap[$requestBody['model']] ?? 'claude-2';
-
+            $claudeModel = Models::getModelMap()[$requestBody['model']] ?? 'claude-2';
             $prompt = self::convertMessagesToPrompt($requestBody['messages']);
             $claudeRequestBody = [
                 "prompt" => $prompt,
                 "model" => $claudeModel,
-                "temperature" => $requestBody['temperature'] ?? "",
-                "max_tokens_to_sample" => $maxTokens,
-                "stop_sequences" => "stop",
+                "temperature" => $requestBody['temperature'] ?? 0.5,
+                "max_tokens_to_sample" => Config::$MAX_TOKENS,
+                "stop_sequences" => ["stop"],
                 "stream" => $requestBody['stream'] ?? false,
             ];
 
             $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
             $response = claudeToChatGPTResponse($claudeResponse, $requestBody['stream']);
             echo json_encode($response);
+
         } catch (\Exception $e) {
             http_response_code(500);
             echo "Server Error: " . $e->getMessage();
@@ -63,20 +66,17 @@ class RequestHandler {
      * @param array $messages
      * @return string
      */
+
     private static function convertMessagesToPrompt($messages) {
         $prompt = '';
         $roleMap = Models::getRoleMap();
-
         foreach ($messages as $message) {
             $role = $message['role'];
             $content = $message['content'];
-            $transformed_role = isset($roleMap[$role]) ? $roleMap[$role] : 'Human'; // Default to 'Human' if not found in map
-
+            $transformed_role = isset($roleMap[$role]) ? $roleMap[$role] : 'Human';
             $prompt .= "\n\n{$transformed_role}: {$content}";
         }
-
-        $prompt .= "\n\nAssistant: "; // Prepares the prompt for the next assistant's response
+        $prompt .= "\n\nAssistant: ";
         return $prompt;
     }
 }
-
