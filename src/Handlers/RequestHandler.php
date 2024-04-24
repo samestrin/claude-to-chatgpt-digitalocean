@@ -43,7 +43,10 @@ class RequestHandler {
             }
 
             $claudeModel = Models::getModelMap()[$requestBody['model']] ?? 'claude-2';
-            $prompt = self::convertMessagesToPrompt($requestBody['messages']);
+            $prompt = self::convertMessagesToPrompt($requestBody['messages']);            
+            error_log(print_r($requestBody, true));
+            $stream = isset($requestBody['stream']) ? $requestBody['stream'] : false;
+            error_log(print_r($stream, true));
             $claudeRequestBody = [
                 "prompt" => $prompt,
                 "model" => $claudeModel,
