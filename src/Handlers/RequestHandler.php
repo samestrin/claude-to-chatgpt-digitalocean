@@ -41,10 +41,10 @@ class RequestHandler {
             $claudeRequestBody = [
                 "prompt" => $prompt,
                 "model" => $claudeModel,
-                "temperature" => $requestBody['temperature'] || "",
+                "temperature" => $requestBody['temperature'] ?? "",
                 "max_tokens_to_sample" => $maxTokens,
                 "stop_sequences" => "stop",
-                "stream" => $requestBody['stream'] || false,
+                "stream" => $requestBody['stream'] ?? false,
             ];
 
             $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
