@@ -14,6 +14,11 @@ class Config {
     public static function setApiKey($key=false) {
         if ($key) { self::$CLAUDE_API_KEY = $key; }
     }
+
+    public static function getApiKey() {
+        return self::$CLAUDE_API_KEY; 
+    }
+
 }
 
 // Initialize the configuration
