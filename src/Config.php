@@ -11,8 +11,8 @@ class Config {
         self::$CLAUDE_API_KEY = getenv('CLAUDE_API_KEY') ?: 'your_api_key_here';
     }
     
-    public static function setApiKey($key) {
-        self::$CLAUDE_API_KEY = $key;
+    public static function setApiKey($key=false) {
+        if ($key) { self::$CLAUDE_API_KEY = $key; }
     }
 }
 
