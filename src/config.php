@@ -7,9 +7,12 @@ class Config {
     public static $CLAUDE_BASE_URL = "https://api.anthropic.com";
     public static $MAX_TOKENS = 9016;
 
-    public static function init() {
-        // Initialization using runtime values
+    public static function init() {     
         self::$CLAUDE_API_KEY = getenv('CLAUDE_API_KEY') ?: 'your_api_key_here';
+    }
+    
+    public static function setApiKey($key) {
+        self::$CLAUDE_API_KEY = $key;
     }
 }
 
