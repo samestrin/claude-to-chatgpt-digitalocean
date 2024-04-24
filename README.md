@@ -1,6 +1,6 @@
 # claude-to-chatgpt-php-digital-ocean
 
-A PHP Digital Ocean App Platform based port of [jtsang4/claude-to-chatgpt.](https://github.com/jtsang4/claude-to-chatgpt).
+A PHP Digital Ocean App Platform based port of [jtsang4/claude-to-chatgpt.](https://github.com/jtsang4/claude-to-chatgpt) cloudflare-worker.js.
 
 Digital Ocean App Platform calls offer more resources than Cloudflare Workers and may be more performant in some use cases.
 
