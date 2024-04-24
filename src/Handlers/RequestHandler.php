@@ -44,20 +44,21 @@ class RequestHandler {
 
             $claudeModel = Models::getModelMap()[$requestBody['model']] ?? 'claude-2';
             $prompt = self::convertMessagesToPrompt($requestBody['messages']);            
-            error_log(print_r($requestBody, true));
+
             $stream = isset($requestBody['stream']) ? $requestBody['stream'] : false;
-            error_log(print_r($stream, true));
+            $temperature = isset($requestBody['stream']) ? $requestBody['temperature'] : 0.5;            
+
             $claudeRequestBody = [
                 "prompt" => $prompt,
                 "model" => $claudeModel,
-                "temperature" => $requestBody['temperature'] ?? 0.5,
+                "temperature" => $temperature,
                 "max_tokens_to_sample" => Config::$MAX_TOKENS,
                 "stop_sequences" => ["stop"],
-                "stream" => $requestBody['stream'] ?? false,
-            ];
+                "stream" => $stream,
+            ];            
 
             $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
-            $response = claudeToChatGPTResponse($claudeResponse, $requestBody['stream']);
+            $response = claudeToChatGPTResponse($claudeResponse, $stream);
             echo json_encode($response);
 
         } catch (\Exception $e) {
