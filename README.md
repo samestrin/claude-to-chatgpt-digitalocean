@@ -39,3 +39,7 @@ curl -X POST http://DO-APP-PLATFORM-SERVER.app/v1/chat/completions \
 -H "Authorization: MY_CLAUDE_API_KEY" \
 -d '{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Hello, how are you?"}]}'
 ```
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
