@@ -1,5 +1,6 @@
 <?php
 namespace ClaudeToGPTAPI\ApiHelpers;
+
 use ClaudeToGPTAPI\Config;
 use stdClass;
 
