@@ -7,7 +7,6 @@ require_once __DIR__ . '/../ApiHelpers/ApiHelpers.php';
 use ClaudeToGPTAPI\Config;
 use ClaudeToGPTAPI\Models;
 use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
-use function ClaudeToGPTAPI\ApiHelpers\getAPIKey;
 use function ClaudeToGPTAPI\ApiHelpers\makeClaudeRequest;
 use function ClaudeToGPTAPI\ResponseHelpers\claudeToChatGPTResponse;
 
@@ -21,14 +20,12 @@ class RequestHandler {
     public static function handle($vars) {
         try {
             $input = file_get_contents("php://input");
-            $headers = self::getRequestHeaders(); // Fetch all headers
+            $headers = self::getRequestHeaders(); // Fetch all headers            
 
-            die(print_r($headers));
-            
-            $apiKey = getAPIKey($headers['Authorization']); // Get or default to configured API key
-
-            // Set API key in configuration dynamically
-            Config::setApiKey($apiKey);
+            $apiKey = $headers['Authorization'] ?? false; // Get or default to configured API key
+            if (!$apiKey) {
+                $apiKey = Config::getApiKey();
+            }
 
             $requestBody = json_decode($input, true);
             
