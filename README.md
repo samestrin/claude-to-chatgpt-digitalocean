@@ -18,7 +18,14 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 heroku-php-nginx -C nginx.conf .
 ```
 
-## Testing
+## Endpoints
+
+Once deployed, two endpoints are available:
+
+- `/v1/models`
+- `/v1/chat/completions`
+
+## Testing your claude-to-chatgpt-php-digital-ocean Deployment
 
 ```
 curl -X POST http://DO-APP-PLATFORM-SERVER.app/v1/chat/completions \
@@ -26,5 +33,3 @@ curl -X POST http://DO-APP-PLATFORM-SERVER.app/v1/chat/completions \
 -H "Authorization: MY_CLAUDE_API_KEY" \
 -d '{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Hello, how are you?"}]}'
 ```
-
-Currently working on implementation logic.
