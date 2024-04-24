@@ -10,6 +10,14 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 - 💦 Support streaming response
 - 🐻 Support claude-instant-1, claude-2 models
 
+## Digital Ocean App Platform Setup
+
+### Commands > Run Commands
+
+```
+heroku-php-nginx -C nginx.conf .
+```
+
 ## Testing
 
 ```
