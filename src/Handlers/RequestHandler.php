@@ -21,13 +21,14 @@ class RequestHandler {
     public static function handle($vars) {
         try {
             $input = file_get_contents("php://input");
-            $headers = getallheaders(); // Fetch all headers
+            $headers = self::getRequestHeaders(); // Fetch all headers
             $apiKey = getAPIKey($headers['Authorization']); // Get or default to configured API key
-die(print_r($headers, $apiKey));
+
             // Set API key in configuration dynamically
             Config::setApiKey($apiKey);
 
             $requestBody = json_decode($input, true);
+            
             if (json_last_error() !== JSON_ERROR_NONE) {
                 throw new \Exception("Invalid JSON");
             }
@@ -78,5 +79,22 @@ die(print_r($headers, $apiKey));
         }
         $prompt .= "\n\nAssistant: ";
         return $prompt;
+    }
+
+    /**
+     * Gets all headers from the request.
+     *
+     * @return array
+     */
+
+    private static function getRequestHeaders() {
+        $headers = [];
+        foreach ($_SERVER as $key => $value) {
+            if (substr($key, 0, 5) === 'HTTP_') {
+                $header = str_replace(' ', '-', ucwords(str_replace('_', ' ', strtolower(substr($key, 5)))));
+                $headers[$header] = $value;
+            }
+        }
+        return $headers;
     }
 }
