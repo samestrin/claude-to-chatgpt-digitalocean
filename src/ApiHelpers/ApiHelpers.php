@@ -25,7 +25,7 @@ function getAPIKey(array $headers): string {
  */
 function validateRequestBody(array $requestBody): array {
     $errors = [];
-    $requiredFields = ['model', 'messages', 'temperature', 'stop', 'stream'];
+    $requiredFields = ['model', 'messages'];
     foreach ($requiredFields as $field) {
         if (!isset($requestBody[$field]) || !is_correct_type($field, $requestBody[$field])) {
             $errors[] = "Invalid or missing field: $field";

@@ -43,12 +43,12 @@ class RequestHandler {
                 "model" => $claudeModel,
                 "temperature" => $requestBody['temperature'],
                 "max_tokens_to_sample" => $maxTokens,
-                "stop_sequences" => $requestBody['stop'],
+                "stop_sequences" => "stop",
                 "stream" => $requestBody['stream'],
             ];
 
             $claudeResponse = makeClaudeRequest($apiKey, $claudeRequestBody);
-            $response = claudeToChatGPTResponse($claudeResponse, false);
+            $response = claudeToChatGPTResponse($claudeResponse, $requestBody['stream']);
             echo json_encode($response);
         } catch (\Exception $e) {
             http_response_code(500);
