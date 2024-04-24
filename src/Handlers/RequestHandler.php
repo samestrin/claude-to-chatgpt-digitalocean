@@ -22,6 +22,9 @@ class RequestHandler {
         try {
             $input = file_get_contents("php://input");
             $headers = self::getRequestHeaders(); // Fetch all headers
+
+            die(print_r($headers));
+            
             $apiKey = getAPIKey($headers['Authorization']); // Get or default to configured API key
 
             // Set API key in configuration dynamically
