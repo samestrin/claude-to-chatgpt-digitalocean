@@ -5,6 +5,7 @@ namespace ClaudeToGPTAPI\Handlers;
  * Handles OPTIONS requests for CORS preflight checks.
  * This class is responsible for returning the necessary CORS headers.
  */
+
 class OptionsHandler {
     /**
      * Handles the incoming OPTIONS request and sends appropriate CORS headers.
