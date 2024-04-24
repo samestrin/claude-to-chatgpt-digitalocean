@@ -10,7 +10,6 @@ services:
   - name: web
     github:
       repo: samestrin/claude-to-chatgpt-php-digital-ocean
-      repo_clone_url: https://github.com/samestrin/claude-to-chatgpt-php-digital-ocean.git
       branch: main
     environment_slug: php
     build_command: composer install
