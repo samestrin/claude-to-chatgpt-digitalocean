@@ -5,7 +5,7 @@ on:
     branches:
       - main # Ensure this is your default branch
     paths:
-      - "package.json"
+      - "composer.json"
   workflow_dispatch:
 
 jobs:
