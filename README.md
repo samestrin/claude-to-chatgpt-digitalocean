@@ -2,7 +2,7 @@
 
 [![Star on GitHub](https://img.shields.io/github/stars/samestrin/claude-to-chatgpt-php-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-php-digital-ocean/stargazers) [![Fork on GitHub](https://img.shields.io/github/forks/samestrin/claude-to-chatgpt-php-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-php-digital-ocean/network/members) [![Watch on GitHub](https://img.shields.io/github/watchers/samestrin/claude-to-chatgpt-php-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-php-digital-ocean/watchers)
 
-![Version 1.0.8](https://img.shields.io/badge/Version-1.0.0-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-PHP-green)](https://php.net/)
+![Version 1.0.8](https://img.shields.io/badge/Version-0.0.1-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-PHP-green)](https://php.net/)
 
 A PHP Digital Ocean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js.
 
