@@ -1,0 +1,20 @@
+ingress:
+  rules:
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
+name: claude-to-chatgpt-php-digital-ocean
+services:
+  - name: web
+    environment_slug: php
+    build_command: composer install
+    run_command: php -S 0.0.0.0:8080 -t .
+    http_port: 8080
+    source_dir: /
+    routes:
+      - path: /
+    github:
+      repo: samestrin/claude-to-chatgpt-php-digital-ocean
+      branch: main

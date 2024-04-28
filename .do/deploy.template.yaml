@@ -1,0 +1,8 @@
+spec:
+  name: claude-to-chatgpt-php-digital-ocean
+  services:
+    - name: web
+      environment_slug: php
+      github:
+        branch: main
+        repo_clone_url: https://github.com/samestrin/claude-to-chatgpt-php-digital-ocean.git
