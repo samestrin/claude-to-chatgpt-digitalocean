@@ -22,7 +22,9 @@ Click this button to deploy the project to your DigitalOcean account:
 
 ## DigitalOcean App Platform Setup
 
-### Commands > Run Command
+1. Navigate to your project in the DigitalOcean App Platform.
+2. Go to the "Commands" section.
+3. Under "Run Command", enter the following:
 
 ```
 heroku-nginx -C nginx.conf .
