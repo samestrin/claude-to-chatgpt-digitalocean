@@ -1,7 +1,7 @@
 spec:
   name: claude-to-chatgpt-php-digital-ocean
   services:
-    - name: web
+    - name: claude-to-chatgpt-php-digital-ocean
       environment_slug: php
       github:
         branch: main
