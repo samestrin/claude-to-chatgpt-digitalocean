@@ -1,12 +1,12 @@
-# claude-to-chatgpt-digital-ocean
+# claude-to-chatgpt-digitalocean
 
-[![Star on GitHub](https://img.shields.io/github/stars/samestrin/claude-to-chatgpt-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digital-ocean/stargazers) [![Fork on GitHub](https://img.shields.io/github/forks/samestrin/claude-to-chatgpt-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digital-ocean/network/members) [![Watch on GitHub](https://img.shields.io/github/watchers/samestrin/claude-to-chatgpt-digital-ocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digital-ocean/watchers)
+[![Star on GitHub](https://img.shields.io/github/stars/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/stargazers) [![Fork on GitHub](https://img.shields.io/github/forks/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/network/members) [![Watch on GitHub](https://img.shields.io/github/watchers/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/watchers)
 
 ![Version 1.0.8](https://img.shields.io/badge/Version-0.0.1-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-green)](https://php.net/)
 
-A PHP Digital Ocean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js.
+A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js.
 
-Digital Ocean App Platform calls offer more resources than Cloudflare Workers and may be more performant in some use cases.
+DigitalOcean App Platform calls offer more resources than Cloudflare Workers and may be more performant in some use cases.
 
 This project converts the API of Anthropic's Claude model to the OpenAI Chat API format.
 
@@ -14,13 +14,13 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 - 💦 Support streaming response
 - 🐻 Support claude-instant-1, claude-2 models
 
-## Deploy to Digital Ocean
+## Deploy to DigitalOcean
 
-Click this button to deploy the project to your Digital Ocean account:
+Click this button to deploy the project to your DigitalOcean account:
 
-[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/samestrin/claude-to-chatgpt-digital-ocean/tree/main&refcode=2d3f5d7c5fbe)
+[![Deploy to DO](https://www.deploytodo.com/do-btn-blue.svg)](https://cloud.digitalocean.com/apps/new?repo=https://github.com/samestrin/claude-to-chatgpt-digitalocean/tree/main&refcode=2d3f5d7c5fbe)
 
-## Digital Ocean App Platform Setup
+## DigitalOcean App Platform Setup
 
 ### Commands > Run Command
 
@@ -35,7 +35,7 @@ Once deployed, two endpoints are available:
 - `/v1/models`
 - `/v1/chat/completions`
 
-## Testing your claude-to-chatgpt-digital-ocean Deployment
+## Testing your claude-to-chatgpt-digitalocean Deployment
 
 ```
 curl -X POST http://DO-APP-PLATFORM-SERVER.app/v1/chat/completions \
@@ -50,4 +50,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Share
 
-[![Twitter](https://img.shields.io/badge/X-Tweet-blue)](https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20project!&url=https://github.com/samestrin/claude-to-chatgpt-digital-ocean) [![Facebook](https://img.shields.io/badge/Facebook-Share-blue)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/samestrin/claude-to-chatgpt-digital-ocean) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Share-blue)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/samestrin/claude-to-chatgpt-digital-ocean)
+[![Twitter](https://img.shields.io/badge/X-Tweet-blue)](https://twitter.com/intent/tweet?text=Check%20out%20this%20awesome%20project!&url=https://github.com/samestrin/claude-to-chatgpt-digitalocean) [![Facebook](https://img.shields.io/badge/Facebook-Share-blue)](https://www.facebook.com/sharer/sharer.php?u=https://github.com/samestrin/claude-to-chatgpt-digitalocean) [![LinkedIn](https://img.shields.io/badge/LinkedIn-Share-blue)](https://www.linkedin.com/sharing/share-offsite/?url=https://github.com/samestrin/claude-to-chatgpt-digitalocean)
