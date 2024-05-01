@@ -14,6 +14,8 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 - 💦 Support streaming response
 - 🐻 Support claude-instant-1, claude-2 models
 
+A Node.js port, designed to deploy at Netlify, is available [samestrin/claude-to-chatgpt-netlify](https://github.com/samestrin/claude-to-chatgpt-netlify) here.
+
 ## Deploy to DigitalOcean
 
 Click this button to deploy the project to your DigitalOcean account:
