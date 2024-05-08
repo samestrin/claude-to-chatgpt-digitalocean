@@ -2,7 +2,7 @@
 
 [![Star on GitHub](https://img.shields.io/github/stars/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/stargazers) [![Fork on GitHub](https://img.shields.io/github/forks/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/network/members) [![Watch on GitHub](https://img.shields.io/github/watchers/samestrin/claude-to-chatgpt-digitalocean?style=social)](https://github.com/samestrin/claude-to-chatgpt-digitalocean/watchers)
 
-![Version undefined](https://img.shields.io/badge/Version-undefined-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-green)](https://php.net/)
+![Version undefined](https://img.shields.io/badge/Version-undefined-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-PHP-green)](https://php.net/)
 
 A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js. This project converts the API of Anthropic's Claude model to the OpenAI Chat API format.
 
