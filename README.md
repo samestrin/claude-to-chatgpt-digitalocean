@@ -114,15 +114,9 @@ This application can be configured with various options through environment vari
 - **CLAUDE_BASE_URL**: The endpoint URL for the Claude API.
 - **DEBUG**: Set to true to enable detailed error logs for development.
 
+## Contribute
 
-## Testing your claude-to-chatgpt-digitalocean Deployment
-
-```
-curl -X POST http://DO-APP-PLATFORM-SERVER.app/v1/chat/completions \
--H "Content-Type: application/json" \
--H "Authorization: MY_CLAUDE_API_KEY" \
--d '{"model": "gpt-3.5-turbo", "messages": [{"role": "user", "content": "Hello, how are you?"}]}'
-```
+Contributions to this project are welcome. Please fork the repository and submit a pull request with your changes or improvements.
 
 ## License
 
