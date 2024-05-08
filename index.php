@@ -1,8 +1,7 @@
 <?php
 
 /**
- * A PHP DigitalOcean App Platform based port of jtsang4/claude-to-chatgpt; it adapts Anthropic's Claude API to match OpenAI's 
- * Chat API format.
+ * A PHP DigitalOcean App Platform based port of jtsang4/claude-to-chatgpt's cloudflare-worker.js.
  * 
  * Copyright (c) 2024-PRESENT Sam Estrin
  * This script is licensed under the MIT License (see LICENSE for details)
