@@ -1,5 +1,5 @@
 {
-  "name": "samestrin/claude-to-chatgpt-php-digital-ocean",
+  "name": "samestrin/claude-to-chatgpt-php-digitalocean",
   "version": "0.0.1",
   "description": "A PHP DigitalOcean App Platform based port of jtsang4/claude-to-chatgpt.",
   "authors": [
