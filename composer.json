@@ -1,12 +1,21 @@
 {
   "name": "samestrin/claude-to-chatgpt-php-digital-ocean",
   "version": "0.0.1",
-  "description": "A PHP Digital Ocean App Platform based port of jtsang4/claude-to-chatgpt.",
+  "description": "A PHP DigitalOcean App Platform based port of jtsang4/claude-to-chatgpt.",
   "authors": [
     {
       "name": "Sam Estrin"
     }
   ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/samestrin/claude-to-chatgpt-digitalocean/issues"
+  },
+  "homepage": "https://github.com/samestrin/claude-to-chatgpt-digitalocean#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samestrin/claude-to-chatgpt-digitalocean.git"
+  },  
   "require": {
     "php": "^8.0.0",
     "nikic/fast-route": "^1.3"
