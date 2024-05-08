@@ -2,8 +2,25 @@
 namespace ClaudeToGPTAPI;
 
 class Models {
+    /**
+     * Retrieves a mapping of user roles to their corresponding system roles.
+     *
+     * @return array An associative array of user roles to system roles.
+     */    
     public static function getRoleMap() { return ["system" => "Human", "user" => "Human", "assistant" => "Assistant"]; }
+    
+    /**
+     * Provides mappings for different stop reasons used within the API responses.
+     *
+     * @return array An associative array of stop reason identifiers to their descriptions.
+     */    
     public static function getStopReasonMap() { return ["stop_sequence" => "stop", "max_tokens" => "length"]; }
+    
+    /**
+     * Provides a mapping from external model names to internal Claude model identifiers.
+     *
+     * @return array An associative array mapping external model names to internal identifiers.
+     */
     public static function getModelMap() { 
         return 
             [
@@ -12,7 +29,13 @@ class Models {
                 "gpt-4" => "claude-2",
                 "gpt-4-0613" => "claude-2",
             ];
-    }        
+    }  
+          
+    /**
+     * Retrieves a list of available models along with their details.
+     *
+     * @return array An array of objects, each representing a model and its details.
+     */    
     public static function getModelsList() {
         return [
             [

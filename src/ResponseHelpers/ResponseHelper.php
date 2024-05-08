@@ -5,12 +5,12 @@ use ClaudeToGPTAPI\Models;
 use stdClass;
 
 /**
- * Converts a response from the Claude API into an object format similar to a ChatGPT response.
+ * Converts the raw response from Claude into a format suitable for the ChatGPT interface.
  *
- * @param stdClass $claudeResponse Response object from the Claude API.
- * @param bool $stream Indicates if the response is from a streaming endpoint.
- * @return stdClass Formatted response similar to ChatGPT API responses.
- * @throws Exception If the response format is invalid.
+ * @param stdClass $claudeResponse The raw response from the Claude API.
+ * @param bool $stream Indicates if the response is to be streamed.
+ * @return stdClass A formatted response object for the ChatGPT interface.
+ * @throws \UnexpectedValueException If the response format is incorrect or unexpected.
  */
 function claudeToChatGPTResponse(stdClass $claudeResponse, bool $stream = false): stdClass
 {

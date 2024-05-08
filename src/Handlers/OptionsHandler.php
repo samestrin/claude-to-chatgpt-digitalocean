@@ -8,7 +8,9 @@ namespace ClaudeToGPTAPI\Handlers;
 
 class OptionsHandler {
     /**
-     * Handles the incoming OPTIONS request and sends appropriate CORS headers.
+     * Handles HTTP OPTIONS requests, providing CORS headers.
+     *
+     * @return void Sets headers and terminates with a 204 No Content response.
      */
     public static function handle() {
         // Setting headers for CORS

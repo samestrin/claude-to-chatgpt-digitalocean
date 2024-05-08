@@ -5,10 +5,11 @@ use ClaudeToGPTAPI\Config;
 use stdClass;
 
 /**
- * Retrieves the API key from the headers or uses the default.
+ * Retrieves the API key from the request headers or defaults to the configured key.
  *
- * @param array $headers - Array containing request headers.
- * @returns string - The API key.
+ * @param array $headers The headers of the incoming HTTP request.
+ * @return string The API key extracted or the default.
+ * @throws \InvalidArgumentException If the headers do not contain the API key and no default is set.
  */
 function getAPIKey(array $headers): string {
     $authorization = $headers["Authorization"] ?? '';
@@ -19,10 +20,11 @@ function getAPIKey(array $headers): string {
 }
 
 /**
- * Validates the request body for required fields.
+ * Validates the necessary fields and their types in the request body.
  *
- * @param array $requestBody - Array containing the body of the request.
- * @returns array - List of validation errors.
+ * @param array $requestBody The body of the HTTP request.
+ * @return array An array of validation error messages, if any.
+ * @throws \UnexpectedValueException If required fields are missing or in incorrect format.
  */
 function validateRequestBody(array $requestBody): array {
     $errors = [];
@@ -38,13 +40,12 @@ function validateRequestBody(array $requestBody): array {
     return $errors;
 }
 
-
 /**
- * Checks if the type of a given value matches the expected type for a specified field.
+ * Checks if the value type matches the expected type for a specific field.
  *
- * @param string $field - The name of the field.
- * @param mixed $value - The value to check.
- * @returns bool - True if the type is correct, false otherwise.
+ * @param string $field The field name.
+ * @param mixed $value The value to check.
+ * @return bool True if the type is correct, false otherwise.
  */
 function is_correct_type($field, $value): bool {
     switch ($field) {
@@ -63,12 +64,12 @@ function is_correct_type($field, $value): bool {
 }
 
 /**
- * Makes a request to the Claude API.
+ * Sends a request to the Claude API and handles the response.
  *
- * @param string $apiKey - The API key for authentication.
- * @param array $claudeRequestBody - The request body for Claude API.
- * @returns stdClass - The response from the Claude API.
- * @throws Exception - Throws an exception if the API request fails.
+ * @param string $apiKey The API key for authentication.
+ * @param array $claudeRequestBody The request body to be sent to Claude API.
+ * @return stdClass The response object from the Claude API.
+ * @throws \RuntimeException If the network request fails or the API returns an error status.
  */
 function makeClaudeRequest(string $apiKey, array $claudeRequestBody): stdClass {
     $url = Config::$CLAUDE_BASE_URL . '/v1/complete';

@@ -1,4 +1,6 @@
 <?php
+
+
 namespace ClaudeToGPTAPI;
 
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -17,6 +19,10 @@ $dispatcher = simpleDispatcher(function (RouteCollector $r) {
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = explode('?', $_SERVER['REQUEST_URI'], 2)[0];
 $uri = rawurldecode($uri);
+
+/**
+ * Sets up and dispatches routes for the API server.
+ */
 
 $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 

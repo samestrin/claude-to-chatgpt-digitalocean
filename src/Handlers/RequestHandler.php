@@ -12,13 +12,15 @@ use function ClaudeToGPTAPI\ApiHelpers\validateRequestBody;
 use function ClaudeToGPTAPI\ApiHelpers\makeClaudeRequest;
 use function ClaudeToGPTAPI\ResponseHelpers\claudeToChatGPTResponse;
 
-/**
- * Handles API requests.
- *
- * @param mixed $vars - Variables passed to the handler.
- */
-
 class RequestHandler {
+
+    /**
+     * Handles incoming requests, processes them, and formulates responses.
+     *
+     * @param array $vars Variables extracted from the request URL.
+     * @return void Outputs the response based on the request.
+     * @throws \Exception If processing the request or generating a response fails.
+     */
     public static function handle($vars) {
         try {
             $input = file_get_contents("php://input");
@@ -68,12 +70,11 @@ class RequestHandler {
     }
 
     /**
-     * Converts an array of message objects into a formatted prompt for Claude model.
+     * Converts a series of message objects into a formatted prompt string suitable for processing.
      *
-     * @param array $messages
-     * @return string
+     * @param array $messages Array of message objects from the request.
+     * @return string A formatted prompt string.
      */
-
     private static function convertMessagesToPrompt($messages) {
         $prompt = '';
         $roleMap = Models::getRoleMap();
@@ -88,11 +89,10 @@ class RequestHandler {
     }
 
     /**
-     * Gets all headers from the request.
+     * Retrieves HTTP request headers and formats them into an associative array.
      *
-     * @return array
+     * @return array An associative array of headers.
      */
-
     private static function getRequestHeaders() {
         $headers = [];
         foreach ($_SERVER as $key => $value) {
