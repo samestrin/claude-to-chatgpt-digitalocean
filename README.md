@@ -18,8 +18,6 @@ A Node.js port, designed to deploy on Netlify, is available [samestrin/claude-to
 
 ## Dependencies
 
-This application relies on the following technologies and libraries:
-
 - **PHP**: Server-side scripting language (PHP 8.0 or later recommended).
 - **nikic/fast-route**: A fast request router for PHP, used for efficient routing of API requests. 
 
