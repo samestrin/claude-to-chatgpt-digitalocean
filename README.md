@@ -4,11 +4,9 @@
 
 ![Version undefined](https://img.shields.io/badge/Version-undefined-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-green)](https://php.net/)
 
-A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js.
+A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js. This project converts the API of Anthropic's Claude model to the OpenAI Chat API format.
 
 DigitalOcean App Platform offers more resources than Cloudflare Workers and will be more performant in most use cases.
-
-This project converts the API of Anthropic's Claude model to the OpenAI Chat API format.
 
 A Node.js port, designed to deploy on Netlify, is available [samestrin/claude-to-chatgpt-netlify](https://github.com/samestrin/claude-to-chatgpt-netlify) here.
 
