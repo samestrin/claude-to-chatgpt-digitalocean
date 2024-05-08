@@ -16,6 +16,21 @@ This project converts the API of Anthropic's Claude model to the OpenAI Chat API
 
 A Node.js port, designed to deploy on Netlify, is available [samestrin/claude-to-chatgpt-netlify](https://github.com/samestrin/claude-to-chatgpt-netlify) here.
 
+## Dependencies
+
+This application relies on the following technologies and libraries:
+
+- **PHP**: Server-side scripting language (PHP 7.4 or later recommended).
+- **Composer**: Dependency manager for PHP, facilitating package management. 
+- **nikic/fast-route**: A fast request router for PHP, used for efficient routing of API requests. 
+
+## Features
+
+- **API Compatibility**: Enables Claude model integration by mimicking the OpenAI ChatGPT API structure.
+- **Streaming Support**: Facilitates real-time interaction with the Claude model through streaming responses.
+- **Model Flexibility**: Supports various configurations of Claude models including claude-instant-1 and claude-2.
+- **Performance Optimization**: Utilizes the enhanced capabilities of DigitalOcean's infrastructure for improved performance over alternatives like Cloudflare Workers.
+
 ## Deploy to DigitalOcean
 
 Click this button to deploy the project to your DigitalOcean account:
@@ -38,6 +53,15 @@ Once deployed, two endpoints are available:
 
 - `/v1/models`
 - `/v1/chat/completions`
+
+## Options
+
+This application can be configured with various options through environment variables:
+
+- **CLAUDE_API_KEY**: Your API key for accessing Claude API.
+- **CLAUDE_BASE_URL**: The endpoint URL for the Claude API.
+- **DEBUG**: Set to true to enable detailed error logs for development.
+
 
 ## Testing your claude-to-chatgpt-digitalocean Deployment
 
