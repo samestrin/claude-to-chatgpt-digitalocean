@@ -49,7 +49,7 @@ Simulate ChatGPT-like interaction by sending a message to the Claude model.
 
 #### **Parameters**
 
-- `model`: The Claude model to use (e.g., 'claude-instant-1').
+- `model`: The OpenAI model (e.g., 'gpt-3.5-turbo') or Claude model (e.g.,'claude-instant-1') to use. (OpenAI models are automatically mapped to Claude models.)
 - `messages`: An array of message objects where each message has a `role` ('user' or 'assistant') and `content`.
 
 #### **Example Usage**
