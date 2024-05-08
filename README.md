@@ -4,7 +4,7 @@
 
 ![Version undefined](https://img.shields.io/badge/Version-undefined-blue) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Built with PHP](https://img.shields.io/badge/Built%20with-green)](https://php.net/)
 
-A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt); it adapts Anthropic's Claude API to match OpenAI's Chat API format.
+A PHP DigitalOcean App Platform based port of [jtsang4/claude-to-chatgpt](https://github.com/jtsang4/claude-to-chatgpt)'s cloudflare-worker.js.
 
 DigitalOcean App Platform calls offer more resources than Cloudflare Workers and may be more performant in some use cases.
 
