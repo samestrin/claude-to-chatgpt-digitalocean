@@ -38,12 +38,73 @@ Click this button to deploy the project to your DigitalOcean account:
 heroku-nginx -C nginx.conf .
 ```
 
-## Endpoints
+## **Endpoints**
 
-Once deployed, two endpoints are available:
+### **Chat Completion**
 
-- `/v1/models`
-- `/v1/chat/completions`
+**Endpoint:** `/v1/chat/completions`  
+**Method:** POST
+
+Simulate ChatGPT-like interaction by sending a message to the Claude model.
+
+#### **Parameters**
+
+- `model`: The Claude model to use (e.g., 'claude-instant-1').
+- `messages`: An array of message objects where each message has a `role` ('user' or 'assistant') and `content`.
+
+#### **Example Usage**
+
+Use a tool like Postman or curl to make a request:
+
+```bash
+curl -X POST http://localhost:[PORT]/v1/chat/completions \
+-H "Content-Type: application/json" \
+-d '{
+    "model": "claude-instant-1",
+    "messages": [
+        {"role": "user", "content": "Hello, how are you?"}
+    ]
+}'
+```
+
+The server will process the request and return the model's response in JSON format.
+
+### **Model Information**
+
+**Endpoint:** `/v1/models`  
+**Method:** GET
+
+Retrieve information about the available models.
+
+#### **Example Usage**
+
+Use curl to make a request:
+
+```bash
+curl http://localhost:[PORT]/v1/models
+```
+
+The server will return a list of available models and their details in JSON format.
+
+### **CORS Pre-flight Request**
+
+**Endpoint:** `/`  
+**Method:** OPTIONS
+
+Handle pre-flight requests for CORS (Cross-Origin Resource Sharing). This endpoint provides necessary headers in response to pre-flight checks performed by browsers to ensure that the server accepts requests from allowed origins.
+
+#### **Example Usage**
+
+This is typically used by browsers automatically before sending actual requests, but you can manually test CORS settings using curl:
+
+```bash
+curl -X OPTIONS http://localhost:[PORT]/ \
+-H "Access-Control-Request-Method: POST" \
+-H "Origin: http://example.com"
+```
+
+The server responds with appropriate CORS headers such as Access-Control-Allow-Origin.
+
 
 ## Options
 
