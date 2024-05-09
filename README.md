@@ -105,14 +105,12 @@ curl -X OPTIONS http://localhost:[PORT]/ \
 
 The server responds with appropriate CORS headers such as Access-Control-Allow-Origin.
 
-
 ## Options
 
 This application can be configured with various options through environment variables:
 
 - **CLAUDE_API_KEY**: Your API key for accessing Claude API.
 - **CLAUDE_BASE_URL**: The endpoint URL for the Claude API.
-- **DEBUG**: Set to true to enable detailed error logs for development.
 
 ## Contribute
 
